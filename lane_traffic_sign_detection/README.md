@@ -44,7 +44,7 @@ lane-traffic-sign-detection
 To set up the project, clone the repository and install the required dependencies:
 
 ```bash
-git clone <repository-url>
+git clone <[https://github.com/begad-tamim/lane-traffic-sign-detection.git]>
 cd lane-traffic-sign-detection
 pip install -r requirements.txt
 ```
