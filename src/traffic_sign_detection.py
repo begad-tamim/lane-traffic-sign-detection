@@ -5,10 +5,30 @@ import os
 
 class TrafficSignDetector:
     def __init__(self, model_path, class_names):
+        """
+        Initializes the TrafficSignDetection class.
+
+        Args:
+            model_path (str): Path to the pre-trained YOLO model.
+            class_names (list): List of class names for traffic sign detection.
+        """
         self.model = YOLO(model_path)
         self.classes = class_names
 
     def detect_signs(self, image):
+        """
+        Detects traffic signs in the given image using the pre-trained model.
+
+        Args:
+            image (numpy.ndarray): The input image in which traffic signs are to be detected.
+
+        Returns:
+            tuple: A tuple containing:
+                - image (numpy.ndarray): The input image with detected signs annotated.
+                - detected_signs (list): A list of tuples, each containing:
+                    - label (str): The class name and confidence score of the detected sign.
+                    - bbox (tuple): The bounding box coordinates (x, y, width, height) of the detected sign.
+        """
         results = self.model(image)
         detected_signs = []
         for result in results:
@@ -26,6 +46,22 @@ class TrafficSignDetector:
         return image, detected_signs
 
 def main():
+    """
+    Main function to perform traffic sign detection on test images.
+    This function initializes the TrafficSignDetector with the specified model path and class names.
+    It then processes each image in the test images directory, performing traffic sign detection
+    and displaying the results.
+    Steps:
+    1. Initialize the TrafficSignDetector with the model path and class names.
+    2. Iterate through each image in the test images directory.
+    3. Load the image and perform traffic sign detection.
+    4. Display the detection results.
+    5. Wait for a key press to move to the next image.
+    6. Close all OpenCV windows after processing all images.
+    Note:
+    - Ensure the model path and test images directory are correct.
+    - The class names list is currently commented out and should be updated with the actual class names if needed.
+    """
     model_path = r'C:\Users\begad\OneDrive\Term 7\Computer Vision\FInal Project\lane-traffic-sign-detection\models\best.pt'  # Ensure this path is correct
     class_names = [
         # 'stop sign', 'yield sign', 'speed limit', 'no entry', 'traffic light', 'pedestrian crossing', 'school zone',
